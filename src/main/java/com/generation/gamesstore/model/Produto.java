@@ -1,10 +1,13 @@
 package com.generation.gamesstore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -27,6 +30,12 @@ public class Produto {
 	
 	@Column(nullable = false)
 	private Integer quantidadeEstoque;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Categoria categoria;
+	
+	
 
 	public Long getId() {
 		return id;
@@ -68,5 +77,12 @@ public class Produto {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
 	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	
 }
